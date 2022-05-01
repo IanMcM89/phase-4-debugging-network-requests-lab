@@ -64,10 +64,38 @@ developing your own process.
 
   - How I debugged:
 
+    Tried to post new toy and got "500 Internal Server Error" and "NameError (uninitialized constant ToysController::Toys):" in server logs.
+
+    Check app/toys_controller.
+
+    Found incorrect "Toys" classname in create method. Changed to "Toy".
+
+    Toy now posted successfully with status code 201
+
 - Update the number of likes for a toy
 
   - How I debugged:
 
+    Tried clicking like button and received "SyntaxError: Unexpected end of JSON input" in console.
+
+    Checked server logs and found "Unpermitted parameter: :id".
+
+    Check fetch request in component...looks good.
+
+    Check app/toys_controller.
+
+    Found no json returned in update method. Added code to return json.
+
 - Donate a toy to Goodwill (and delete it from our database)
 
   - How I debugged:
+
+    Tried to delete toy and received "404 (Not Found)" in console.
+
+    Checked server logs and got "ActionController::RoutingError (No route matches [DELETE] "/toys/9"):"
+
+    Check routes...
+
+    Add :destroy method to resources.
+
+    Toy successfully deleted without errors.
